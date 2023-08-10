@@ -1,0 +1,33 @@
+input::placeholder {
+    color:  black;
+    opacity: 1;
+    font-weight: bold;
+
+}
+
+input:focus::placeholder {
+    color: rgb(179, 179, 179);
+  
+}
+input:focus {
+    border:2px solid rgb(170, 170, 170);
+
+    outline-style: none;
+  
+    caret-color: rgb(64, 189, 238);
+  
+}
+input{
+    height: 50px;
+    border: 1px solid #B4B7BD;
+border-radius: 5px;
+opacity: 1;
+
+}
+.input-div{
+    width: 80%;
+display: flex;
+flex-direction: column;
+margin: 10px;
+
+}

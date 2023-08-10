@@ -1,0 +1,154 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+}
+.main-container{
+    display: flex; 
+    height: 100vh;
+    width: 100%;
+    
+}
+
+.subsection-left{
+    width:60%;
+
+    background-color: rgba(230,247,253,255);
+    margin: 20px 0px 20px 20px;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.subsection-right{
+    width:50%;
+   
+    margin-left: 10%;
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space space-evenly;
+  
+}
+.subsection-right>img{
+    width:200px;
+  
+    top: 0px; 
+    left: 0px;
+    
+}
+
+.circular-bg>img{
+    object-fit: contain;
+    background-color: white;
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    border: solid 20px white;
+}
+
+.error{
+    font-size: x-small;
+    color: red;
+}
+
+form>*{
+    width:80%;
+    height:50px;
+    margin-top:30px;
+    border-radius:5px;
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+   
+}
+form{
+    margin-top: 70px;
+    position: absolute;
+    left: 0px; 
+    
+}
+
+form>button{
+ background-color: rgb(34, 181, 226);
+ color:white;
+ border:0px;
+ font-weight: bold;
+}
+input::placeholder {
+    color:  black;
+    opacity: 1;
+    font-weight: bold;
+
+}
+
+input:focus::placeholder {
+    color: rgb(179, 179, 179);
+  
+}
+input:focus {
+    border:2px solid rgb(170, 170, 170);
+
+    outline-style: none;
+  
+    caret-color: rgb(64, 189, 238);
+  
+}
+
+button:hover {
+    background-color: rgb(9, 139, 179);
+}
+
+@media only screen and (max-width: 1500px) {
+  
+    .circular-bg>img{
+        
+        height: 450px;
+        width: 450px;
+      
+    }
+    form>*{
+        width:80%;
+     
+    }
+
+    .subsection-right>img{
+    width:150px;
+    
+}
+.subsection-right{
+    
+    margin-left: 10%;
+    margin-top: 18%;
+}
+
+  }
+@media only screen and (max-width: 1024px) {
+  
+    .circular-bg>img{
+        
+        height: 400px;
+        width: 400px;
+      
+    }
+    form>*{
+        width:65%;
+     
+    }
+
+    .subsection-right>img{
+    width:140px;
+    
+}
+.subsection-right{
+    
+    margin-left: 10%;
+    margin-top: 20%;
+}
+
+  }
+
+/* --------------------------css for create employee page-------------------------------------------------------------------*/
