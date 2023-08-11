@@ -34,16 +34,18 @@ const Login: FC = () => {
       </section>
 
       <section className='subsection-right'>
-        <img src='assets/img/kv-logo.png' alt='Login' />
+        <div className='login-logo'>
+          <img src='assets/img/kv-logo.png' alt='Login' />
+        </div>
         <Input
-          label='Username'
+          label=''
           type='text'
           value={username}
           onChange={setUsername}
           placeholder='Username'
         />
         <Input
-          label='Password'
+          label=''
           type='password'
           value={password}
           onChange={setPassword}

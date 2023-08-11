@@ -1,0 +1,31 @@
+.details-card{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 20px;
+border-radius: 10px;
+    box-shadow: 2px 2px 4px 0px lightgray;
+}
+.detail-section{
+    display: flex;
+}
+.sub-detail{
+    display:flex;
+    flex-direction: column;
+    padding: 40px;
+    padding-right:9%;
+    font-size: medium;
+    
+}
+.value{
+    padding: 15px 0 15px 0;
+}
+.label{
+    padding-bottom: 5px;
+    color: #595959;
+}
+.line{
+    height: 1px;
+    margin:0 10px 0 10px;
+    background-color: #efefef;
+}

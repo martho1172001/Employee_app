@@ -1,0 +1,13 @@
+.active{
+   padding: 20px 40px 20px 40px; 
+   background-color:#D3F4BE ;
+   font-size: small;
+   border-radius: 30px;
+
+}
+.inactive{
+    padding: 20px 40px 20px 40px; 
+    background-color:#FFBFBF ;
+    font-size: small;
+    border-radius: 30px;
+ }

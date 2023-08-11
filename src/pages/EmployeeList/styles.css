@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+}
+.overall-flex{
+display: flex;
+
+}
+.create-body{
+    background-color: rgb(243, 243, 243);
+    display: flex;
+    flex-direction: column;
+    
+    width: 85%;
+    height:100vh;
+    
+}
