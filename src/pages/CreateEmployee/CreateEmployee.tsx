@@ -7,8 +7,10 @@ import Input from '../../components/Input/Input';
 import DropDown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const CreateEmployee = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [details, setDetails] = useState({
@@ -26,10 +28,34 @@ const CreateEmployee = () => {
     const tempDetails = { ...details };
 
     tempDetails[key] = value;
+    console.log(tempDetails);
     setDetails(tempDetails);
   };
+  var i = 10;
+
   const handleCreate = () => {
     console.log(details);
+    console.log('dispatched');
+    dispatch({
+      type: 'EMPLOYEE:CREATE',
+      payload: {
+        employee: {
+          id: i++,
+          name: details.name,
+          joiningDate: details.joiningDate,
+          isActive: details.isActive,
+          experience: details.experience,
+          role: details.role,
+          departmentId: details.department,
+          address: {
+            houseName: details.addressHouse,
+            line1: details.addressLine1,
+            line2: details.addressLine2
+          }
+        }
+      }
+    });
+    navigate('/employees');
   };
   const handleCancel = () => {
     navigate('/employees');
