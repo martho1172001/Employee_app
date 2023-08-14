@@ -11,11 +11,13 @@ const Action = (props) => {
         onClick={props.onDeleteClick(true)}
         onClickCapture={() => (props.deleteId.current = props.emp_id)}
         src='/assets/icons/delete.png'
+        data-testid='image1-action-test'
       ></img>
       <img
         className='edit-icon'
         onClick={() => navigate(`/employees/edit/${props.emp_id}`)}
         src='/assets/icons/edit.png'
+        data-testid='image2-action-test'
       ></img>
     </div>
   );

@@ -11,6 +11,7 @@ function DeletePopup(props) {
           className='close'
           onClick={() => props.onDeleteClick(false)}
           src='/assets/icons/close.svg'
+          data-testid='popup-img-test'
         ></img>
         <h6>Are you sure ?</h6>
         <p>Do you really want to delete this employee ?</p>
