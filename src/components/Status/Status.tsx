@@ -3,7 +3,9 @@ import './styles.css';
 const Status = (props) => {
   const statusCodes = {
     true: { label: 'Active', classname: 'active' },
-    false: { label: 'Inactive', classname: 'inactive' }
+    false: { label: 'Inactive', classname: 'inactive' },
+    Active: { label: 'Active', classname: 'active' },
+    Inactive: { label: 'Inactive', classname: 'inactive' }
   };
 
   return (

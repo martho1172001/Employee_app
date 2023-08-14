@@ -13,7 +13,7 @@ const App: FC = () => {
     <div className='app'>
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Main />} />
+          <Route path='/' element={<Main />} />
           <Route path='/login' element={<Login />} />
           <Route path='/employees' element={<EmployeeList />} />
           <Route path='/employees/:id' element={<EmployeeDetails />} />
