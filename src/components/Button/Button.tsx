@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 type ButtonPropType = {
   text: string;
-  type: 'filled-btn' | 'disabled-btn';
+  type: 'filled-btn' | 'disabled-btn' | 'enabled' | 'disabled';
   onClick: (e) => void;
 };
 

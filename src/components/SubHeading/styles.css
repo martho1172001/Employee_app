@@ -1,19 +1,9 @@
-/* .sub-heading{
-    margin:15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px 0px lightgray;
-    width:98%;
-    height:100px;
-    background-color: white;
-    padding: 35px;
-
-} */
 
 .sub-header{
     margin:15px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px 0px lightgray;
-   
+   margin-top: 100px;
     height:100px;
     background-color: white;
     /* margin-left: 16%; */

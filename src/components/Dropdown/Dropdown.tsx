@@ -1,26 +1,21 @@
 import './styles.css';
-function DropDown(props) {
-  console.log(props.options);
-  const data = props.options;
-
+const DropDown = (props) => {
   const options = () =>
-    data.map((item) => (
+    props.options.map((item) => (
       <option key={item} value={item}>
         {item}
       </option>
     ));
 
-  console.log(options());
-
   return (
     <>
-      <div className='dropdown'>
+      <div className='input-div'>
         <label>{props.label}</label>
 
-        <select>{options()}</select>
+        <select onChange={(e) => props.onChange(e.target.value)}>{options()}</select>
       </div>
     </>
   );
-}
+};
 
 export default DropDown;

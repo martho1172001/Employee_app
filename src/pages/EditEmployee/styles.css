@@ -1,0 +1,138 @@
+.main{
+    width: 100%;
+    position: relative;
+}
+.create-form{
+    margin: 15px;
+    box-shadow: 2px 2px 4px 0px lightgray;
+    width:98%;
+    background-color: white;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.formsection{
+    display: flex;
+    width:95%;
+    padding-bottom: 45px;
+    padding-left: 40px;
+    border:none;
+    
+}
+.form-firstsection{
+    padding-top: 40px;
+}
+.form-thirdsection{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    width: 33.33%;
+}
+.form-fourthsection{
+ 
+    padding-bottom: 20px;
+    width: 50%;
+}
+
+.form-thirdsection>.label-input{
+    width: 100%;
+}
+.form-submitsection{
+    margin-top: -60px;
+    width: 33.33%;
+    justify-content: space-around;
+}
+
+.label-input{
+    width:40%;
+    display:flex;
+    flex-direction: column;
+    height: 60px;
+    
+}
+.form-fourthsection>.label-input{
+    width: 66.66%;
+}
+.enabled{
+    background-color: rgb(34, 181, 226);
+    color:white;
+    border: 2px solid rgb(34, 181, 226);
+    font-weight: bold;
+    padding:7px;
+    width:150px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.disabled{
+    background-color: white;
+    color:lightgrey;
+    border: 2px solid rgb(201, 201, 201);
+    color: rgb(133, 133, 133);
+    font-weight: bold;
+    padding:7px;
+   height: 35px;
+    width:150px;
+    border-radius: 5px;
+
+}
+.first{
+    padding-bottom: 90px;
+}
+
+.label-input>input::placeholder {
+    color:  rgb(154, 154, 154);
+    opacity: 1;
+    font-weight: lighter;
+    padding: 10px;
+
+}
+
+input:focus::placeholder {
+    color: rgb(179, 179, 179);
+  
+}
+input:focus {
+    border:2px solid rgb(170, 170, 170);
+
+    outline-style: none;
+  
+    caret-color: rgb(64, 189, 238);
+  
+}
+input{
+    padding-top: 10px;
+    height: 45px;
+border-radius: 5px;
+opacity: 1;
+padding: 10px;
+background: #FAFAFA 0% 0% no-repeat padding-box;
+border: 1px solid #D9D9D9;
+
+}
+.input-div{
+display: flex;
+flex-direction: column;
+margin: 25px;
+width: 90%;
+
+}
+.input-div>label{
+    font-size: medium;
+}
+.disabled-input>.input-div>input{
+    background-color: #D1D1D1;
+    color:  rgb(179, 179, 179);
+}
+.disabled-input>.input-div>input:focus {
+    border:1px solid #D9D9D9;
+
+    outline-style: none;
+  
+    caret-color:transparent
+  
+}
+.placeholder>.input-div>input{
+    color:  rgb(137, 137, 137);
+    opacity: 1;
+}

@@ -13,8 +13,8 @@ border-radius: 10px;
     display:flex;
     flex-direction: column;
     padding: 40px;
-    padding-right:9%;
     font-size: medium;
+    width: 20%;
     
 }
 .value{

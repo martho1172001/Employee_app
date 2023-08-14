@@ -1,6 +1,6 @@
 import './styles.css';
-const Header = () => {
-  return <div className='blank-container'></div>;
+const Header = (props) => {
+  return <div className={props.className}></div>;
 };
 
 export default Header;

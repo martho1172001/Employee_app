@@ -7,11 +7,11 @@ const Status = (props) => {
   };
 
   return (
-    <>
+    <div className='status'>
       <div className={statusCodes[props.isactive].classname}>
         {statusCodes[props.isactive].label}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ const SubHeading = (props) => {
         {props.imgSrc && (
           <div className='header-button' onClick={props.onClick}>
             <div className='circular-icon-header'>
-              <img src={props.imgSrc} alt='Logo' />
+              <img className={props.classname} src={props.imgSrc} alt='Logo' />
             </div>
             <h6>{props.buttontext}</h6>
           </div>

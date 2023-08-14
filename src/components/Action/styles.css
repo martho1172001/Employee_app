@@ -1,0 +1,8 @@
+.edit-icon{
+    filter: invert(48%) sepia(95%) saturate(1425%) hue-rotate(158deg) brightness(90%) contrast(101%);
+
+}
+.delete-icon{
+    filter: invert(41%) sepia(75%) saturate(4382%) hue-rotate(341deg) brightness(123%) contrast(96%);
+    margin-right: 15%;
+}

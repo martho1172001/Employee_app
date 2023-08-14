@@ -5,14 +5,12 @@ import './styles.css';
 import { useState } from 'react';
 import Input from '../../components/Input/Input';
 import DropDown from '../../components/Dropdown/Dropdown';
-// import DropDown from '@app/components/Dropdown/Dropdown';
-const CreateEmployee = () => {
-  //   const navigate = useNavigate();
+import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
-  //   const handleClickCreate = () => {
-  //     navigate('/login');
-  //     console.log('create employee clicked');
-  //   };
+const CreateEmployee = () => {
+  const navigate = useNavigate();
+
   const [details, setDetails] = useState({
     name: '',
     joiningDate: '',
@@ -29,17 +27,22 @@ const CreateEmployee = () => {
 
     tempDetails[key] = value;
     setDetails(tempDetails);
+  };
+  const handleCreate = () => {
     console.log(details);
+  };
+  const handleCancel = () => {
+    navigate('/employees');
   };
 
   return (
-    <body className='overall-flex'>
+    <div className='overall-flex'>
       <Sidenav />
       <div className='create-body'>
-        <Header />
+        <Header className='blank-container' />
         <SubHeading heading='Create Employee' />
         <div className='create-form'>
-          <div className='form-firstsection formsection'>
+          <div className='create-firstsection createsection'>
             <div className='label-input'>
               <Input
                 label='Employee Name'
@@ -50,10 +53,10 @@ const CreateEmployee = () => {
               />
             </div>
 
-            <div className='label-input'>
+            <div className='label-input placeholder'>
               <Input
                 label='Joining Date'
-                type='text'
+                type='date'
                 value={details.joiningDate}
                 onChange={(e) => onChange('joiningDate', e)}
                 placeholder='Joining Date'
@@ -70,11 +73,11 @@ const CreateEmployee = () => {
             </div>
           </div>
 
-          <div className='form-secondsection formsection'>
+          <div className='create-secondsection createsection'>
             <div className='label-input'>
               <DropDown
                 label='Department'
-                options={['frontend', 'backend', 'devops', 'qa']}
+                options={['Frontend', 'Backend', 'DevOps', 'QA']}
                 value={details.department}
                 onChange={(e) => onChange('department', e)}
               />
@@ -96,8 +99,8 @@ const CreateEmployee = () => {
               />
             </div>
           </div>
-          <div className='form-thirdsection formsection'>
-            <div className='label-input'>
+          <div className='create-thirdsection createsection'>
+            <div className='label-input first'>
               <Input
                 label='Address'
                 type='text'
@@ -106,18 +109,18 @@ const CreateEmployee = () => {
                 placeholder='Address house name'
               />
             </div>
-            <div className='label-input'>
+            <div className='label-input display-none'>
               <Input
-                label=''
+                label='address1'
                 type='text'
                 value={details.addressLine1}
                 onChange={(e) => onChange('addressLine1', e)}
                 placeholder='Address line1'
               />
             </div>
-            <div className='label-input'>
+            <div className='label-input display-none '>
               <Input
-                label=''
+                label='address2'
                 type='text'
                 value={details.addressLine2}
                 onChange={(e) => onChange('addressLine2', e)}
@@ -125,10 +128,13 @@ const CreateEmployee = () => {
               />
             </div>
           </div>
-          <div className='form-submitsection formsection'></div>
+          <div className='create-submitsection createsection'>
+            <Button type='enabled' text='Create' onClick={handleCreate} />
+            <Button type='disabled' text='Cancel' onClick={handleCancel} />
+          </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 

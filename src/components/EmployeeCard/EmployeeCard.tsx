@@ -3,8 +3,6 @@ import './styles.css';
 import Status from '../Status/Status';
 
 const EmployeeCard = (props) => {
-  console.log(props.data);
-
   return (
     <div className='details-card'>
       <div className='detail-section'>
@@ -32,8 +30,12 @@ const EmployeeCard = (props) => {
       <div className='line'></div>
       <div className='detail-section'>
         <div className='sub-detail'>
-          <label className='label'>Employee Name</label>
-          <div className='value'>{props.data.name}</div>
+          <label className='label'>Address</label>
+          <div className='value'>
+            {props.data.address.houseName}
+            <br /> {props.data.address.line1}
+            <br /> {props.data.address.line2}
+          </div>
         </div>
         <div className='sub-detail'>
           <label className='label'>Employee ID</label>

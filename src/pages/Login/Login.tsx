@@ -1,5 +1,5 @@
 import { useState, type FC } from 'react';
-import '../../pages/Login/styles.css';
+import './styles.css';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -37,22 +37,26 @@ const Login: FC = () => {
         <div className='login-logo'>
           <img src='assets/img/kv-logo.png' alt='Login' />
         </div>
-        <Input
-          label=''
-          type='text'
-          value={username}
-          onChange={setUsername}
-          placeholder='Username'
-        />
-        <Input
-          label=''
-          type='password'
-          value={password}
-          onChange={setPassword}
-          placeholder='Password'
-        />
-        <Button text='Submit' type='filled-btn' onClick={handleSubmit} />
+        <div className='login-input'>
+          <Input
+            label='Username'
+            type='text'
+            value={username}
+            onChange={setUsername}
+            placeholder='Username'
+          />
+          <Input
+            label='Password'
+            type='password'
+            value={password}
+            onChange={setPassword}
+            placeholder='Password'
+          />
+        </div>
+        <div className='submit-button'>
+        <Button text='Login' type='filled-btn' onClick={handleSubmit} />
         {showError && <div className='error'>Please enter the username and password</div>}
+        </div>
       </section>
     </div>
   );
