@@ -1,16 +1,21 @@
 import React from 'react';
 import './styles.css';
-type ButtonPropType = {
+export type ButtonPropType = {
   text: string;
   type: 'filled-btn' | 'disabled-btn' | 'enabled' | 'disabled';
-  onClick: (e) => void;
+  onClick?: (e) => void;
 };
 
 const Button: React.FC<ButtonPropType> = (props) => {
   return (
     <>
       <div className='button-class'>
-        <button className={props.type} onClick={props.onClick}>
+        <button
+          className={props.type}
+          onClick={props.onClick}
+          value='hello'
+          data-testid='button-test'
+        >
           {props.text}
         </button>
       </div>

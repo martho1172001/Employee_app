@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css';
-type InputPropType = {
+export type InputPropType = {
   label: string | null;
   type: 'text' | 'password' | 'number' | 'date';
   value: string | number;
-  onChange: (e) => void;
+  onChange?: (e) => void;
   placeholder: string;
 };
 
@@ -24,7 +24,11 @@ const Input: React.FC<InputPropType> = (props) => {
   return (
     <>
       <div className='input-div'>
-        {props.label && <label className='label'>{props.label}</label>}
+        {props.label && (
+          <label className='label' data-testid='input-label-test'>
+            {props.label}
+          </label>
+        )}
         <input
           type={props.type}
           value={props.value}
@@ -32,6 +36,7 @@ const Input: React.FC<InputPropType> = (props) => {
           onFocus={handleFocus} // Add class on focus
           onBlur={handleBlur}
           placeholder={props.placeholder}
+          data-testid='input-input-test'
         />
       </div>
     </>
