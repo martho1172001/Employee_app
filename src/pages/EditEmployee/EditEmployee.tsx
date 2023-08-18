@@ -2,74 +2,141 @@ import SubHeading from '../../components/SubHeading/SubHeading';
 import Header from '../../components/Header/Header';
 import Sidenav from '../../components/Sidenav/Sidenav';
 import './styles.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../../components/Input/Input';
 import DropDown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useGetEmployeeByIdQuery, useSaveNewEmployeeMutation } from '../../services/employeeApi';
+import { EmployeeType } from '../../actions/employeeAction';
+import { useGetDepartmentsQuery, useGetRolesQuery } from '../../services/dropDownApi';
 
 const EditEmployee = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { id } = useParams();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  const data = useSelector((state: any) => {
-    // eslint-disable-next-line no-debugger
-    console.log(state.employees);
-    // eslint-disable-next-line no-debugger
-
-    return state.employees;
-  });
-  const emp = data.find((item) => Number(id) === item.id);
-
   const navigate = useNavigate();
+  const { data } = useGetEmployeeByIdQuery(Number(id));
+  const { data: rolesData } = useGetRolesQuery();
+  const { data: departmentData } = useGetDepartmentsQuery();
+  const departments = {};
+  const departmentNames: String[] = [];
+  const [saveNewEmployee, { error, isSuccess }] = useSaveNewEmployeeMutation();
 
-  const [savedetails, setDetails] = useState({
-    id: emp.id,
-    name: emp.name,
-    joiningDate: emp.joiningDate,
-    experience: emp.experience,
-    department: emp.department,
-    role: emp.role,
-    isActive: emp.isActive,
-    addressHouse: emp.address.addressHouse,
-    addressLine1: emp.address.addressLine1,
-    addressLine2: emp.address.addressLine2
+  const [savedetails, setsaveDetails] = useState({
+    id: 0,
+    name: '',
+    joiningDate: '',
+    experience: 0,
+    departmentId: '',
+    role: 'HR',
+    isActive: 'Active',
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
+    state: '',
+    usernameCreate: '',
+    passwordCreate: '',
+    country: '',
+    pincode: ''
   });
+
+  let emp: EmployeeType = {
+    id: 0,
+    name: '',
+    username: '',
+    password: '',
+    joiningDate: '',
+    isActive: '',
+    experience: 0,
+    role: '',
+    departmentId: 0,
+    address: {
+      address_line_1: '',
+      address_line_2: '',
+      city: '',
+      state: '',
+      country: '',
+      pincode: ''
+    }
+  };
+
+  useEffect(() => {
+    let foundKey = null;
+
+    if (data) {
+      emp = data.data;
+
+      // Loop through object keys
+      for (const key in departments)
+        if (departments[key] === emp.departmentId) {
+          foundKey = key;
+          console.log('found vakue in emp' + foundKey);
+          break; // Stop loop once found
+        }
+    }
+    setsaveDetails({
+      id: 0,
+      name: emp.name,
+      usernameCreate: emp.username,
+      passwordCreate: '',
+      joiningDate: emp.joiningDate,
+      experience: emp.experience,
+      departmentId: foundKey,
+      role: emp.role,
+      isActive: emp.isActive,
+      addressLine1: emp.address.address_line_1,
+      addressLine2: emp.address.address_line_2,
+      city: emp.address.city,
+      state: emp.address.state,
+      country: emp.address.country,
+      pincode: emp.address.pincode
+    });
+  }, [data]);
+
   const onChange = (key, value) => {
     const tempDetails = { ...savedetails };
 
     tempDetails[key] = value;
     console.log(tempDetails);
-    setDetails(tempDetails);
+    setsaveDetails(tempDetails);
   };
+
   const handleSave = () => {
     console.log(savedetails);
-    console.log('dispatched');
-    dispatch({
-      type: 'EMPLOYEE:SAVE',
-      payload: {
-        employee: {
-          id: savedetails.id,
-          name: savedetails.name,
-          joiningDate: savedetails.joiningDate,
-          isActive: savedetails.isActive,
-          experience: savedetails.experience,
-          role: savedetails.role,
-          departmentId: savedetails.department,
-          address: {
-            houseName: savedetails.addressHouse,
-            line1: savedetails.addressLine1,
-            line2: savedetails.addressLine2
-          }
-        }
+    saveNewEmployee({
+      id: Number(id),
+      name: savedetails.name,
+      username: savedetails.usernameCreate,
+      password: savedetails.passwordCreate,
+      joiningDate: savedetails.joiningDate,
+      isActive: savedetails.isActive,
+      experience: Number(savedetails.experience),
+      role: savedetails.role,
+      departmentId: departments[savedetails.departmentId],
+      address: {
+        city: savedetails.city,
+        state: savedetails.state,
+        country: savedetails.country,
+        pincode: savedetails.pincode,
+        address_line_1: savedetails.addressLine1,
+        address_line_2: savedetails.addressLine2
       }
     });
-    navigate('/employees');
   };
+
+  if (error) console.log(error);
+
+  if (isSuccess) navigate('/employees');
+
   const handleCancel = () => {
     navigate('/employees');
   };
+
+  if (!rolesData || !departmentData) return <div>loading...</div>;
+  departmentData.data.forEach((item) => {
+    departments[item.name] = item.id;
+    departmentNames.push(item.name);
+  });
 
   return (
     <div className='main'>
@@ -93,7 +160,7 @@ const EditEmployee = () => {
               <div className='label-input placeholder'>
                 <Input
                   label='Joining Date'
-                  type='date'
+                  type='text'
                   value={savedetails.joiningDate}
                   onChange={(e) => onChange('joiningDate', e)}
                   placeholder={emp.joiningDate}
@@ -109,20 +176,39 @@ const EditEmployee = () => {
                 />
               </div>
             </div>
-
+            <div className='create-newsection createsection'>
+              <div className='label-input placeholder'>
+                <Input
+                  label='Username'
+                  type='text'
+                  value={savedetails.usernameCreate}
+                  onChange={(e) => onChange('usernameCreate', e)}
+                  placeholder='Username'
+                />
+              </div>
+              <div className='label-input placeholder'>
+                <Input
+                  label='Password'
+                  type='password'
+                  value={savedetails.passwordCreate}
+                  onChange={(e) => onChange('passwordCreate', e)}
+                  placeholder='Password'
+                />
+              </div>
+            </div>
             <div className='form-secondsection formsection'>
               <div className='label-input'>
                 <DropDown
                   label='Department'
-                  options={['Frontend', 'Backend', 'DevOps', 'QA']}
-                  value={savedetails.department}
-                  onChange={(e) => onChange('department', e)}
+                  options={departmentNames}
+                  value={savedetails.departmentId}
+                  onChange={(e) => onChange('departmentId', e)}
                 />
               </div>
               <div className='label-input'>
                 <DropDown
                   label='Role'
-                  options={['HR', 'Developer', 'Design']}
+                  options={rolesData.data}
                   value={savedetails.role}
                   onChange={(e) => onChange('role', e)}
                 />
@@ -138,25 +224,16 @@ const EditEmployee = () => {
             </div>
             <div className='formsection edit '>
               <div className='form-thirdsection '>
-                <div className='label-input first'>
+                <div className='label-input first placeholder'>
                   <Input
                     label='Address'
                     type='text'
-                    value={savedetails.addressHouse}
-                    onChange={(e) => onChange('addressHouse', e)}
-                    placeholder='Address house name'
-                  />
-                </div>
-                <div className='label-input'>
-                  <Input
-                    label=''
-                    type='text'
                     value={savedetails.addressLine1}
                     onChange={(e) => onChange('addressLine1', e)}
-                    placeholder='Address line1'
+                    placeholder='Address line 1'
                   />
                 </div>
-                <div className='label-input'>
+                <div className='label-input placeholder'>
                   <Input
                     label=''
                     type='text'
@@ -165,15 +242,53 @@ const EditEmployee = () => {
                     placeholder='Address line2'
                   />
                 </div>
+                <div className='label-input placeholder'>
+                  <Input
+                    label=''
+                    type='text'
+                    value={savedetails.city}
+                    onChange={(e) => onChange('city', e)}
+                    placeholder='Address city'
+                  />
+                </div>
+              </div>
+              <div className='form-thirdsection '>
+                <div className='label-input first display-none placeholder  '>
+                  <Input
+                    label='Address'
+                    type='text'
+                    value={savedetails.state}
+                    onChange={(e) => onChange('state', e)}
+                    placeholder='Address state'
+                  />
+                </div>
+                <div className='label-input placeholder'>
+                  <Input
+                    label=''
+                    type='text'
+                    value={savedetails.country}
+                    onChange={(e) => onChange('country', e)}
+                    placeholder='Address country'
+                  />
+                </div>
+                <div className='label-input placeholder'>
+                  <Input
+                    label=''
+                    type='text'
+                    value={savedetails.pincode}
+                    onChange={(e) => onChange('pincode', e)}
+                    placeholder='Address pincode'
+                  />
+                </div>
               </div>
               <div className='form-fourthsection'>
                 <div className='label-input disabled-input '>
                   <Input
                     label='Employee ID'
                     type='text'
-                    value={emp.id}
+                    value={Number(id)}
                     onChange={() => {}}
-                    placeholder={emp.id.toString()}
+                    placeholder={id}
                   />
                 </div>
               </div>
@@ -185,7 +300,6 @@ const EditEmployee = () => {
           </div>
         </div>
       </div>
-      <Header className='bottom' />
     </div>
   );
 };

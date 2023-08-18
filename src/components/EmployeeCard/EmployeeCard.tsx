@@ -20,7 +20,7 @@ const EmployeeCard = (props) => {
       <div className='detail-section'>
         <CardDiv
           label='Address'
-          data={`${props.data.address.houseName}, ${props.data.address.line1}, ${props.data.address.line2}`}
+          data={`${props.data.address.address_line_1}, ${props.data.address.address_line_2}, ${props.data.address.city}, ${props.data.address.state}, ${props.data.address.country}, ${props.data.address.pincode}`}
         />
         <CardDiv label='Employee ID' data={props.data.id} />
       </div>

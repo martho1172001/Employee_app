@@ -5,7 +5,8 @@ const Status = (props) => {
     true: { label: 'Active', classname: 'active' },
     false: { label: 'Inactive', classname: 'inactive' },
     Active: { label: 'Active', classname: 'active' },
-    Inactive: { label: 'Inactive', classname: 'inactive' }
+    Inactive: { label: 'Inactive', classname: 'inactive' },
+    Probation: { label: 'Probation', classname: 'probation' }
   };
 
   return (

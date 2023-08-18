@@ -3,30 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import Status from '../Status/Status';
 import './styles.css';
 import Action from '../Action/Action';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+// import // useGetEmployeeListQuery
+// useLazyGetEmployeeListQuery
+import '../../services/employeeApi';
+// import { useEffect } from 'react';
 
 const Table = (props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  const data = useSelector((state: any) => {
-    // eslint-disable-next-line no-debugger
-    console.log(state.employees);
-
-    return state.employees;
-  });
   const onDeleteClick = () => {
     return props.onDeleteClick;
   };
 
-  const theaders = [
-    'Employee Name',
-    'Employee ID',
-    'Joining Date',
-    'Role',
-    'Status',
-    'Experience',
-    'Action'
-  ];
+  const theaders = ['Employee Name', 'Employee ID', 'Joining Date', 'Role', 'Status', 'Experience'];
 
+  if (localStorage.getItem('Role') === 'HR') theaders.push('Action');
   const navigate = useNavigate();
 
   const theaderDiv = theaders.map((item) => (
@@ -34,7 +24,7 @@ const Table = (props) => {
       {item}
     </td>
   ));
-  const tbodydiv = data.map((item) => (
+  const tbodydiv = props.data.map((item) => (
     <>
       <tr className='table-row' key={item.id}>
         <td
@@ -80,18 +70,20 @@ const Table = (props) => {
         >
           {item.experience} Years
         </td>
-        <td className='tcell' key={'action' + item.id}>
-          <Action emp_id={item.id} onDeleteClick={onDeleteClick} deleteId={props.deleteId} />
-        </td>
+        {localStorage.getItem('Role') === 'HR' && (
+          <td className='tcell' key={'action' + item.id}>
+            <Action emp_id={item.id} onDeleteClick={onDeleteClick} deleteId={props.deleteId} />
+          </td>
+        )}
       </tr>
     </>
   ));
 
   return (
     <>
-      <table>
+      <table data-testid='table-div-test'>
         <thead>
-          <tr key='head' className='table-heading'>
+          <tr key='head' className='table-heading' data-testid='header-table-test'>
             {theaderDiv}
           </tr>
         </thead>

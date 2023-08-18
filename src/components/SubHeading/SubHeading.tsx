@@ -5,7 +5,7 @@ const SubHeading = (props) => {
     <>
       <div className='sub-header' data-testid='subheading-maindiv-test'>
         <h2>{props.heading}</h2>
-        {props.imgSrc && (
+        {props.imgSrc && localStorage.getItem('Role') === 'HR' && (
           <div className='header-button' onClick={props.onClick}>
             <div className='circular-icon-header'>
               <img

@@ -12,7 +12,9 @@ const DropDown = (props) => {
       <div className='input-div'>
         <label>{props.label}</label>
 
-        <select onChange={(e) => props.onChange(e.target.value)}>{options()}</select>
+        <select data-testid='dropdown-select-test' onChange={(e) => props.onChange(e.target.value)}>
+          {options()}
+        </select>
       </div>
     </>
   );

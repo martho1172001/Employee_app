@@ -35,7 +35,8 @@ describe('Button component testing', () => {
       label: 'button here',
       value: 'button',
       type: 'text',
-      placeholder: 'button placeholder'
+      placeholder: 'button placeholder',
+      login: 'hehe'
     };
 
     render(<Input {...InputProps} />);
@@ -51,7 +52,8 @@ describe('Button component testing', () => {
       label: 'button here',
       value: 'button',
       type: 'text',
-      placeholder: 'button placeholder'
+      placeholder: 'button placeholder',
+      login: 'hehe'
     };
 
     render(<Input {...InputProps} />);
@@ -81,7 +83,6 @@ describe('Button component testing', () => {
 
     expect(element).toMatchSnapshot();
     expect(onChangeMock).toHaveBeenCalled;
-
   });
   test('if onchange with value works correctly', () => {
     const onChangeMock = jest.fn();

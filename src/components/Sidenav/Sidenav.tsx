@@ -8,7 +8,12 @@ const Sidenav = () => {
       <div className='sidebar'>
         <img src='/assets/img/kv-logo.png' alt='Login' />
 
-        <div className='sidenav' onClick={() => navigate('/employees')}>
+        <div
+          className='sidenav'
+          onClick={() => navigate('/employees')}
+          onClickCapture={() => console.log('to employees')}
+          data-testid='sidenav-test'
+        >
           <div className='circular-icon'>
             <img src='/assets/icons/employees.svg' alt='Logo' />
           </div>

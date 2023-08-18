@@ -6,19 +6,24 @@ export type InputPropType = {
   value: string | number;
   onChange?: (e) => void;
   placeholder: string;
+  login?: string;
 };
 
 const Input: React.FC<InputPropType> = (props) => {
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    const label = e.currentTarget.previousSibling as HTMLElement;
+    if (props.login) {
+      const label = e.currentTarget.previousSibling as HTMLElement;
 
-    label.classList.add('focused');
+      label.classList.add('focused');
+    }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const label = e.currentTarget.previousSibling as HTMLElement;
+    if (props.login) {
+      const label = e.currentTarget.previousSibling as HTMLElement;
 
-    label.classList.remove('focused');
+      label.classList.remove('focused');
+    }
   };
 
   return (

@@ -1,19 +1,22 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useDispatch } from 'react-redux';
 import Button from '../Button/Button';
 import './styles.css';
+import { useDeleteEmployeeByIdMutation } from '../../services/employeeApi';
+import { useState } from 'react';
 
 function DeletePopup(props) {
-  const dispatch = useDispatch();
-  const handleDelete = () => {
-    console.log('dispatched');
-    dispatch({
-      type: 'EMPLOYEE:DELETE',
-      payload: {
-        id: props.deleteId.current
-      }
-    });
+  const [render, setrender] = useState(true);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+  const [deleteTrigger, { data }] = useDeleteEmployeeByIdMutation();
+  const handleDelete = async () => {
+    try {
+      const payload = await deleteTrigger(props.deleteId.current);
+
+      console.log(payload);
+    } catch (error) {
+      console.error('rejected', error);
+    }
+    setrender(!render);
 
     return props.onDeleteClick(false);
   };

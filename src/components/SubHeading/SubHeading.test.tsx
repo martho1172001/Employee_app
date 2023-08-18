@@ -3,6 +3,13 @@ import SubHeading from './SubHeading';
 
 describe('SubHaeding component testing', () => {
   test('if image source correctly', () => {
+    const mockRole = 'HR';
+    const localStorageMock = {
+      getItem: jest.fn(() => mockRole)
+    };
+
+    Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+
     const mockFunction = jest.fn();
     const SubHeadingProps = {
       heading: 'Employee Details',

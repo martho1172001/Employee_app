@@ -18,12 +18,17 @@
     
 }
 .create-firstsection{
-    padding-top: 40px;
+    padding-top: 30px;
 }
 .create-thirdsection{
     display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
+    flex-direction: row;
+    padding-bottom: 10px;
+    width: 95%;
+}
+.create-newsection{
+    display: flex;
+    flex-direction: row;
     width: 80%;
 }
 .create-submitsection{
@@ -107,5 +112,10 @@ width: 90%;
     font-size: medium;
 }
 .display-none>.input-div>label{
-display: none;
+color:transparent;
+}
+
+.errorCreate{
+    color:red;
+    font-size: medium;
 }
