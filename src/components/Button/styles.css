@@ -1,0 +1,38 @@
+.button-class{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+background-color: rgb(34, 181, 226);
+ color:white;
+ border:0px;
+ font-weight: bold;
+ width:90%;
+ height:50px;
+ margin-top:30px;
+ border-radius:5px;
+ border: 1px solid rgb(190, 190, 190);
+ padding: 5px;
+
+}
+.button-class>filled-btn{
+    background-color: rgb(34, 181, 226);
+    color:white;
+    border: 2px solid rgb(34, 181, 226);
+    font-weight: bold;
+    padding:7px;
+    border-radius: 5px;
+}
+
+.button-class>disabled-btn{
+    background-color: white;
+    color:lightgrey;
+    border: 2px solid rgb(201, 201, 201);
+    color: rgb(133, 133, 133);
+    font-weight: bold;
+    padding:7px;
+    border-radius: 5px;
+
+}

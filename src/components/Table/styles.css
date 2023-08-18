@@ -1,0 +1,42 @@
+table{
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 0px 20px 20px 20px;
+}
+.tcell{
+    width: 10%;
+    font-size: medium;
+    font-weight: bold;
+    padding: 10px;
+    background-color:white;
+    font-weight: lighter;
+}
+.theader{
+    width: 10%;
+    font-size: medium;
+    font-weight: bold;
+    padding: 20px 10px 20px 10px;
+    background-color: #EAF9FF;
+}
+
+.table-heading{
+    margin: 20px;
+    box-shadow: 2px 2px 4px 0px lightgray;
+    
+    border-radius: 5px;
+    margin-bottom: 10px;
+  
+}
+
+.table-row{
+    box-shadow: 2px 2px 4px 0px lightgray;
+    border-radius: 5px;
+    
+    }
+
+td:last-child{
+    border-radius: 0 5px 5px 0;
+}
+td:first-child{
+    border-radius: 5px 0 0px 5px;
+}
